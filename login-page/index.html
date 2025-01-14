@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Welcome to My Login Page</h1>
@@ -15,5 +16,36 @@
         <button type="button" id="loginButton">Login</button>
     </form>
     <p id="message"></p>
+
+    <!-- Script section for the login functionality -->
+    <script>
+    document.getElementById("loginButton").addEventListener("click", function () {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Show loading message
+        const message = document.getElementById("message");
+        message.style.color = "blue";
+        message.innerText = "Loading...";
+
+        fetch('http://localhost:3000/users')
+            .then(response => response.json())
+            .then(users => {
+                const user = users.find(user => user.username === username && user.password === password);
+                if (user) {
+                    message.style.color = "green";
+                    message.innerText = "Login successful!";
+                } else {
+                    message.style.color = "red";
+                    message.innerText = "Invalid credentials.";
+                }
+            })
+            .catch(error => {
+                message.style.color = "red";
+                message.innerText = "Error connecting to the server.";
+                console.error('Error:', error);
+            });
+    });
+</script>
 </body>
 </html>
