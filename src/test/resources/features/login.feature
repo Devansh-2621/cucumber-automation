@@ -1,8 +1,13 @@
-"Feature: User Login Funtionality" 
+Feature: Login functionality
 
-
-  Scenario: Successful login with valid credentials
+  Scenario: Successful login
     Given the user is on the login page
-    When the user enters a valid username and password
-    Then the user should be redirected to the dashboard
+    When the user enters "user" as username and "pass" as password
+    And clicks the login button
+    Then the user should see "Login successful!"
 
+  Scenario: Failed login
+    Given the user is on the login page
+    When the user enters "wronguser" as username and "wrongpass" as password
+    And clicks the login button
+    Then the user should see "Invalid credentials."
