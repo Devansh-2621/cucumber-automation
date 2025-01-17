@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "eb81",
+      "username": "user",
+      "password": "pass",
+      "statusMessage": "Login successful!"
+    },
+    {
+      "id": "a50d",
+      "username": "wronguser",
+      "password": "wrongpass",
+      "statusMessage": "Invalid credentials."
+    }
+  ]
+}
